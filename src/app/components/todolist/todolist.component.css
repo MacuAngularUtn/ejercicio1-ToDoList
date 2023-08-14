@@ -1,0 +1,16 @@
+.form-switch .form-check-input {
+    height: 20px;
+    width: 44px;
+}
+
+.form-switch .form-check-input:focus .form-check-input:active {
+    border-color: hsl(140, 40%, 55%);
+    outline: 0;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+}
+
+.form-switch .form-check-input:checked {
+    background-color: hsl(140, 40%, 55%);
+    border-color: hsl(140, 40%, 55%);
+    border: none;
+}

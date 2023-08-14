@@ -1,0 +1,50 @@
+<div class="card bg-body-secondary shadow">
+    <div class="card-body">
+        <div class="row g-3 align-items-center">
+            <div class="col-md-8">
+                <input [(ngModel)]="_task" type="text" class="form-control" placeholder="Ingresar Tarea." />
+            </div>
+            <div class="col-md-2">
+                <input [(ngModel)]="_date" type="date" class="form-control" required />
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="form-control btn btn-primary" (click)="addTask()">Agregar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="text-success my-4">
+    <hr>
+</div>
+
+<ul class=" list-group list-group-flush mt-4">
+    <li class="list-group-item px-2 border-0" *ngFor="let item of getList(); index as i;">
+        <div [ngClass]="item.done ? 'alert-success' : isOverdue(item) ? 'alert-danger' : 'alert-light'"
+            class="alert row my-0" role="alert">
+            <div class="col-4 col-md-1 my-auto">
+                <p class="small mb-0 text-sm-center">{{item.date | date:'dd/MM/yyyy'}}</p>
+            </div>
+            <div class="col-12 col-md">
+                <p class="lead fw-normal mb-0">{{item.task}}</p>
+            </div>
+            <div class="col-4 col-md-1 my-auto">
+                <p class="small mb-0 text-sm-center">{{item.done ? 'Hecho' : isOverdue(item) ? 'Vencida' : 'Pendiente'}}
+                </p>
+            </div>
+            <div class="col-4 col-md-auto m-auto ">
+                <div class="form-check form-switch">
+                    <input class="form-check-input m-auto" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                        [(ngModel)]="item.done" (onchange)="updateTask(i, item)">
+                </div>
+            </div>
+            <div class="col-4 col-md-1 my-auto text-sm-center">
+                <button class="border-0 btn-transition btn btn-outline-danger btn-sm" (click)="removeTask(i)">
+                    <i class="bi bi-trash-fill"></i>
+
+                </button>
+            </div>
+        </div>
+
+    </li>
+</ul>
